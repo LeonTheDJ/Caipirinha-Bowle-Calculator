@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <!-- 
+        Gruppenmitglied1: Leon Deitmer, Matr.Nr.: 11126885 
+        Gruppenmitglied1: Marius Neu, Matr. Nr.: 
+    -->
+    <meta charset="utf-8">
+    <title>Example Title</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="icon" type="image/x-icon" href="" />
+    <script src="jquery-3.4.1.js"></script>
+    <style>
+        select {
+            display: block;
+            width: auto;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .main {
+            background-color: #CCFFCC;
+            border: 2px solid #22FF22;
+            width: auto;
+            padding: 10px;
+        }
+
+        input {
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
+            width: 3em;
+            border: 2px solid green
+        }
+
+        select {
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
+            border: 2px solid green
+        }
+
+        button {
+            margin-top: 2em;
+            margin-bottom: 2em
+        }
+
+        li {
+            list-style-type: circle
+        }
+
+        span {
+            color: red;
+            font-size: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <div class="main">
+        <h1>Caipirinha - Bowle</h1>
+        <h2>mit und ohne Alkohol</h2>
+        <img src="./bowle.jpg" alt="Bild des Cocktails" />
+        <div>Anzahl der gewünschten Gläser</div>
+        <form>
+            <input id="anzahl" />
+            <select id="auswahl">
+                <option value="Mit Alkohol">Mit Alkohol</option>
+                <option value="Ohne Alkohol">Ohne Alkohol</option>
+            </select>
+        </form>
+        <button id="rechnen">Zutaten berechnen</button>
+
+        <script>
+            $(document).ready(function() {
+
+
+                $("#rechnen").click(function() {
+
+                    var glassCount = $("#anzahl").val();
+
+                    //Fehlermeldung anhaengen und die Ausfuehrung der Funktion beenden, wenn Anzahl der Glaeser zu niedrig/hoch
+                    if (glassCount < 2 || glassCount > 30) {
+                        $("span").remove();
+                        $("<span id='info'>Bitte geben Sie eine Zahl zwischen 2 und 30 ein!</span>").insertAfter("#anzahl");
+                        return;
+                    }
+                    //Element wieder loeschen, wenn eine korrekte Eingabe erfolgt
+                    $("#info").remove();
+                    //3 Variablen fuer die Ausgabe der Liste
+                    //diese Zutaten werden immer mit angezeigt
+                    var zutatenGeteilt = `<ul id="zutatenContainer">
+                    <li class="zutaten">` + Math.round(10 / 8 * glassCount) + ` Limetten</li>    
+                    <li class="zutaten">` + Math.round(80 / 8 * glassCount) + ` g Zucker </li>    
+                    <li class="zutaten">` + 1 / 8 * glassCount + ` Liter Ginger Ale</li>`;
+                    //besondere Zutaten fuer alkoholische Cocktails 
+                    var zutatenMitAlk = zutatenGeteilt + `    
+                    <li class="zutaten">` + 0.75 / 8 * glassCount + ` Liter Sekt</li>    
+                    <li class="zutaten">` + 200 / 8 * glassCount + ` ml Rum</li>    
+                    </ul>`;
+                    //besondere Zutaten fuer alkoholfreie Cocktails 
+                    var zutatenOhneAlk = zutatenGeteilt + `    
+                    <li class="zutaten">` + 1 / 8 * glassCount + ` Liter Mineralwasser</li>  
+                    </ul>`;
+                    //Das <ul> Elment von der Seite entfernen, damit nicht mehrere Listen bestehen bleiben
+                    $("#zutatenContainer").remove();
+                    //Je nach Auswahl(mit/ohne Alkohol) die richtige Variable an das div appenden
+                    if ($("#auswahl").val() === "Mit Alkohol") {
+                        $(".main").append(zutatenMitAlk);
+                    } else {
+                        $(".main").append(zutatenOhneAlk);
+                    }
+
+                });
+
+                //hover effect fuer input und select Elemente 
+                $("#anzahl , #auswahl").hover(function() {
+                        $(this).css("border", "2px solid red");
+                    },
+                    function() {
+                        $(this).css("border", "2px solid green");
+                    });
+
+                //mouseente/-leacve event an <li> Elemente anhaengen und das CSS verändern
+                $(document).on("mouseenter", ".zutaten", function() {
+                    $(this).css("color", "#00CC00");
+                    $(this).css("list-style-type", "disc");
+                });
+
+                $(document).on("mouseleave", ".zutaten", function() {
+                    $(this).css("color", "black");
+                    $(this).css("list-style-type", "circle");
+                });
+
+
+
+            })
+        </script>
+    </div>
+    <footer></footer>
+    <script type="text/javascript" src=""></script>
+</body>
+
+</html>
