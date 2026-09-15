@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>Tequila Sunrise Rechner | Cocktail Rechner</title>
+    
+    <meta name="description" content="Berechne Zutaten für Tequila Sunrise (mit und ohne Alkohol).">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/models/Ingredient.js"></script>
+    <script src="../js/models/Cocktail.js"></script>
+    <script src="../js/data/cocktails.js"></script>
+    <script src="../js/components/CocktailCalculator.js"></script>
+    <script src="../js/navbar.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🍹 Tequila Sunrise Rechner</h1>
+        <nav class="nav-bar">
+            <a href="../index.html" class="nav-link">← Zur Übersicht</a>
+            <a href="caipirinha.html" class="nav-link">Caipirinha Bowle</a>
+            <a href="mojito.html" class="nav-link">Mojito</a>
+            <a href="pina-colada.html" class="nav-link">Piña Colada</a>
+            <a href="aperol-spritz.html" class="nav-link">Aperol Spritz</a>
+            <a href="hugo.html" class="nav-link">Hugo</a>
+            <a href="long-island-ice-tea.html" class="nav-link">Long Island Ice Tea</a>
+            <a href="tequila-sunrise.html" class="nav-link active">Tequila Sunrise</a>
+            <a href="zombie.html" class="nav-link">Zombie</a>
+            <a href="sex-on-the-beach.html" class="nav-link">Sex on the Beach</a>
+            <a href="bloody-mary.html" class="nav-link">Bloody Mary</a>
+            <a href="whiskey-sour.html" class="nav-link">Whiskey Sour</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="calculator-root"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Cocktail Rechner</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cocktail = COCKTAILS_DATA.find(c => c.id === 'tequila-sunrise');
+            if (cocktail) {
+                new CocktailCalculator(cocktail, '#calculator-root');
+            }
+        });
+    </script>
+</body>
+</html>
