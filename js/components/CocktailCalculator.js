@@ -11,7 +11,7 @@ class CocktailCalculator {
         this.container = typeof container === 'string' ? document.querySelector(container) : container;
         this.currentServings = cocktail.baseServings;
         this.withAlcohol = true;
-        
+
         if (this.container) {
             this.init();
         }
@@ -63,11 +63,9 @@ class CocktailCalculator {
                         </select>
                     </div>
                 </form>
-
                 <div class="button-wrapper">
                     <button type="button" id="rechnen" class="btn btn-primary">Zutaten berechnen</button>
                 </div>
-
                 <div id="results-area" class="results-area"></div>
             </div>
         `;

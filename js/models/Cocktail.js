@@ -11,7 +11,7 @@ class Cocktail {
      * @param {string} config.image - Relative image URL
      * @param {string} [config.filename] - Custom HTML filename if different from id
      * @param {number} [config.baseServings=8] - Base portion calibration
-     * @param {number} [config.minServings=2] - Minimum allowed portion
+     * @param {number} [config.minServings=1] - Minimum allowed portion
      * @param {number} [config.maxServings=30] - Maximum allowed portion
      * @param {string} [config.description=''] - Brief recipe description
      * @param {Ingredient[]} config.ingredients - List of Ingredient instances
@@ -24,7 +24,7 @@ class Cocktail {
         image = '',
         filename = null,
         baseServings = 8,
-        minServings = 2,
+        minServings = 1,
         maxServings = 30,
         description = '',
         ingredients = []
