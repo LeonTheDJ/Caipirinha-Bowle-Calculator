@@ -300,6 +300,18 @@ main {
     margin-bottom: 0.25rem;
 }
 
+.website-description {
+    font-size: 1rem;
+    color: #cbd5e1;
+    margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .website-description {
+        font-size: 0.8rem;
+    }
+}
+
 .card-subtitle {
     font-size: 0.85rem;
     color: var(--text-muted);
@@ -382,6 +394,7 @@ main {
     color: #1e293b;
     margin-bottom: 1.5rem;
 }
+
 
 /* Form Styles */
 .form-group {
