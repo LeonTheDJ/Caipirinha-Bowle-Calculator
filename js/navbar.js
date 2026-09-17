@@ -22,7 +22,7 @@ function renderNavbar() {
         activeId = found.id;
     }
 
-    let linksHtml = `<a href="${homePath}" class="nav-link ${!activeId ? 'active' : ''}">← Zur Übersicht</a>`;
+    let linksHtml = '';
 
     COCKTAILS_DATA.forEach(cocktail => {
         const file = cocktail.filename || `${cocktail.id}.html`;
@@ -51,4 +51,48 @@ function renderNavbar() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', renderNavbar);
+/**
+ * Initializes click functionality on <h1> to navigate back to the main starting page.
+ */
+function initTitleLink() {
+    const titleElem = document.querySelector('header h1');
+    if (!titleElem) return;
+
+    titleElem.style.cursor = 'pointer';
+    const isSubpage = window.location.pathname.includes('/cocktails/');
+
+    titleElem.addEventListener('click', () => {
+        if (isSubpage) {
+            window.location.href = '../index.html';
+        } else {
+            window.location.hash = '';
+            const overviewContainer = document.getElementById('overview-section');
+            const calculatorContainer = document.getElementById('calculator-section');
+            if (overviewContainer && calculatorContainer) {
+                calculatorContainer.style.display = 'none';
+                overviewContainer.style.display = 'block';
+            }
+        }
+    });
+}
+
+/**
+ * Dynamically ensures the cocktail icon favicon is present in <head>.
+ */
+function ensureFavicon() {
+    let favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
+    }
+    const isSubpage = window.location.pathname.includes('/cocktails/');
+    favicon.type = 'image/png';
+    favicon.href = isSubpage ? '../favicon.png' : 'favicon.png';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    ensureFavicon();
+    initTitleLink();
+    renderNavbar();
+});
